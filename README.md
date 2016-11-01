@@ -1,4 +1,4 @@
-# GoFish API
+# Wishlist API
 
 ## Before cloning the repo:
 
