@@ -10,7 +10,7 @@
 
 ## Initialize Project:
 * curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-* apt-get install -y nodejs (as root)
+* sudo apt-get install -y nodejs
 * sudo apt-get install -y build-essential
 * sudo apt-get update
 * sudo apt-get install npm sqlite3 libsqlite3-dev
