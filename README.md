@@ -14,7 +14,7 @@
 * sudo apt-get install -y build-essential
 * sudo apt-get update
 * sudo apt-get install npm sqlite3 libsqlite3-dev
-* sudo npm install -g grunt-cli bower
+* sudo npm install -g grunt-cli bower sqlite3
 
 ## Every time you pull changes:
 
