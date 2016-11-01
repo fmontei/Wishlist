@@ -8,17 +8,19 @@
 ## Initialize DB:
 * node scripts/init_node.js
 
+## Initialize Project:
+* curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+* apt-get install -y nodejs (as root)
+* sudo apt-get install -y build-essential
+* sudo apt-get update
+* sudo apt-get install npm sqlite3 libsqlite3-dev
+* sudo npm install -g grunt-cli bower
+
 ## Every time you pull changes:
 
 * `npm install`
 * `bower install`
 * `grunt` 
-
-## Testing:
-
-* Change DB_NAME in `.env` to a something else like "test.db"
-* `npm start`
-* `mocha tests/*.js`
 
 ## Structure
 
