@@ -13,9 +13,9 @@ router.use(function(req, res, next) {
     	
    	async.waterfall([
    		function create_user_if_not_exists(callback) {
-   			db.run('insert into user(attuid, password) select $attuid, $password ' +
-                   'where not exists (select * from user where attuid = ' +
-                   '$attuid);', {
+   			db.run("insert into user(attuid, password) select $attuid, " +
+               "$password where not exists (select attuid, password from " +
+               "user where attuid = '$attuid');", {
                 $attuid: attuid,
                 $password: password
             }, function(err) {
@@ -23,8 +23,8 @@ router.use(function(req, res, next) {
             });
    		},
    		function get_user(callback) {
-   			db.all('select * from user where attuid = $attuid and ' +
-   				   'password = $password;', {
+   			db.all("select * from user where attuid = $attuid and " +
+   				     "password = $password;", {
    				$attuid: attuid,
    				$password: password
 		    }, function(err, rows) {
@@ -34,7 +34,7 @@ router.use(function(req, res, next) {
    		}
    	], function(err) {
    		if (err) {
-   			return res.status(500).send(err);
+   			return res.status(500).send(err.message);
    		} else {
    			return res.status(200).send(user);
    		}

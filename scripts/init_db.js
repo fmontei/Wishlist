@@ -9,7 +9,7 @@ var create_user_table_statement = "create table if not exists user(" +
 	"user_id integer primary key autoincrement not null," +
 	"firstname varchar(30)," +
 	"lastname varchar(30)," +
-	"attuid varchar(30) unique not null," +
+	"attuid varchar(30) not null," +
 	"password varchar(30) not null," +
 	"supervisor_id integer," +
 	"foreign key (supervisor_id) references user(user_id) on update cascade);";
