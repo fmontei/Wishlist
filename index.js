@@ -28,7 +28,7 @@ request({
     url: 'http://localhost:3000/init',
     method: 'GET'
 }, function(error, response, body) {
-	console.log(body);
+	console.log(error + " " + body);
 });
 
 app.get('/', function(req, res) {
