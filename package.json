@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower install && grunt"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,7 +16,6 @@
   "dependencies": {
     "async": "^1.0.0",
     "body-parser": "^1.15.0",
-    "bower": "^1.7.9",
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "express-session": "^1.13.0",

@@ -20,10 +20,6 @@ app.use(allowCrossDomain);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/static/css/', express.static(__dirname + '/public/css/'));
-app.use('/static/js/', express.static(__dirname + '/public/js/'));
-app.use('/static/lib/', express.static(__dirname + '/public/lib/'));
-
 app.get('/init', init_db);
 app.post('/get_or_create_user', get_or_create_user);
 
