@@ -25,7 +25,7 @@ app.get('/init', init_db);
 app.post('/get_or_create_user', get_or_create_user);
 
 request({
-    url: 'http://localhost:3000/init',
+    url: 'http://localhost:' + (process.env.PORT || 3000) + '/init',
     method: 'GET'
 }, function(error, response, body) {
 	console.log(error + " " + body);
