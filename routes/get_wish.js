@@ -7,18 +7,9 @@ var db = new sqlite3.Database('wishlist.db');
 
 
 router.use(function(req, res, next) {
-    var name = req.query.name,
-	cost = req.query.cost,
-	category = req.query.category,
-	reason = req.query.reason,
-	description = req.query.description,
-	requester = req.query.requester,
-    	wish = null;
-    	
    	async.waterfall([
    		function get_user(callback) {
-   			db.all('select * from wish where name = $name;', {
-   				$name: name
+   			db.all('select * from wish;', {
 		    }, function(err, rows) {
 		    	if (rows) {
 				console.log("THERE WERE ROWS")
