@@ -31,6 +31,13 @@ var create_wish_table_statement = "create table if not exists wish(" +
 	"supervisor_id integer," +
 	"foreign key (requester) references user(name) on update cascade);";
 
+var create_vote_table_statement = "create table if not exists vote(" +
+        "vote_id integer primary key autoincrement not null," +
+        "user_id integer," +
+        "wish_id integer," +
+        "voted integer," +
+        "foreign key (wish_id) references user(user_id) on update cascade);";
+
 var init = function() {
 	var deferred = Q.defer();
 	
@@ -53,6 +60,17 @@ var init = function() {
 	], function(err) {
 		deferred.resolve(err);
 	});
+
+        async.waterfall([
+            function(callback) {
+                        db.run(create_vote_table_statement, function(err) {
+                                callback(err);
+                        });
+                },
+        ], function(err) {
+                deferred.resolve(err);
+        });
+
 
 	return deferred.promise;
 };

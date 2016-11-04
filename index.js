@@ -10,6 +10,9 @@ var init_db = require('./scripts/init_db');
 var get_or_create_user = require('./routes/get_or_create_user');
 var create_wish = require('./routes/create_wish');
 var get_wish = require('./routes/get_wish');
+var vote = require('./routes/vote');
+var get_vote = require('./routes/get_votes');
+
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -28,9 +31,10 @@ app.use('/static/lib/', express.static(__dirname + '/public/lib/'));
 
 app.get('/init', init_db);
 app.get('/get_wish', get_wish);
+app.get('/get_vote', get_vote);
 app.post('/get_or_create_user', get_or_create_user);
 app.post('/create_wish', create_wish);
-
+app.post('/vote', vote);
 
 request({
     url: 'http://localhost:3000/init',
