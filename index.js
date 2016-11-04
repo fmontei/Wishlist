@@ -14,6 +14,7 @@ var vote = require('./routes/vote');
 var get_vote = require('./routes/get_votes');
 var get_default_users = require('./routes/get_default_users');
 var update_status = require('./routes/update_wish_status');
+var update_crowd_fund = require('./routes/update_crowd_fund');
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -35,6 +36,7 @@ app.post('/create_wish', create_wish);
 app.post('/vote', vote);
 app.get('/get_default_users', get_default_users);
 app.post('/status', update_status);
+app.post('/crowd_fund', update_crowd_fund);
 
 request({
     url: 'http://localhost:' + (process.env.PORT || 3000) + '/init',

@@ -19,8 +19,8 @@ router.use(function(req, res, next) {
     	
    	async.waterfall([
    		function create_user_if_not_exists(callback) {
-   			db.run('insert into wish(name, imageUrl, url, cost, category, reason, description, requester)'+ 
-                   'select $name, $imageUrl, $url, $cost, $category, $reason, $description, $requester', {
+   			db.run('insert into wish(name, imageUrl, url, cost, category, reason, description, requester, crowd_source)'+ 
+                   'select $name, $imageUrl, $url, $cost, $category, $reason, $description, $requester, $crowd_source', {
                 $name: name,
                 $imageUrl: imageUrl,
 		$url: url,
@@ -28,7 +28,8 @@ router.use(function(req, res, next) {
 		$category: category,
 		$reason: reason,
 		$description: description,
-		$requester: requester,
+		$requester: requester,	
+		$crowd_source: 0,
             }, function(err) {
 		console.log(err)
             	callback(err);
