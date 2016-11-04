@@ -6,7 +6,7 @@ var router = express.Router();
 var db = new sqlite3.Database('wishlist.db');
 var supervisor_id = null;
 
-var create_user_table_stmt = "create table if not exists user(" +
+var create_user_table_stmt = "create table user(" +
     "user_id integer primary key autoincrement not null," +
     "firstname varchar(30)," +
     "lastname varchar(30)," +
