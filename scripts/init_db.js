@@ -38,7 +38,6 @@ var create_vote_table_statement = "create table if not exists vote(" +
         "voted integer," +
         "foreign key (wish_id) references user(user_id) on update cascade);";
 
-var init = function() {
 var create_user_prototype_table_stmt = "create table if not exists " +
 	"user_prototype(attuid varchar(30) not null unique on conflict ignore);";
 
@@ -55,31 +54,20 @@ var create_tables = function() {
 			db.run(create_user_prototype_table_stmt, function(err) {
 				callback(err);
 			});
-		}
-	], function(err) {
-		deferred.resolve(err);
-	});
-
-	async.waterfall([
-	    function(callback) {
+		},
+		function(callback) {
 			db.run(create_wish_table_statement, function(err) {
 				callback(err);
 			});
 		},
-	], function(err) {
-		deferred.resolve(err);
-	});
-
-        async.waterfall([
-            function(callback) {
+		function(callback) {
                         db.run(create_vote_table_statement, function(err) {
                                 callback(err);
                         });
                 },
-        ], function(err) {
-                deferred.resolve(err);
-        });
-
+	], function(err) {
+		deferred.resolve(err);
+	});
 
 	return deferred.promise;
 };
