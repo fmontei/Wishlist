@@ -13,20 +13,22 @@ router.use(function(req, res, next) {
     	
    	async.waterfall([
    		function create_user_if_not_exists(callback) {
-   			db.run("insert or ignore into user(attuid, password) values(" +
-               "$attuid, $password);", {
+   			db.run("insert or ignore into user(attuid, password, supervisor) " +
+               "values($attuid, $password, $supervisor);", {
                 $attuid: attuid,
-                $password: password
+                $password: password,
+                $supervisor: "cs4944"
             }, function(err) {
             	callback(err);
             });
    		},
    		function get_user(callback) {
-   			db.all("select * from user where attuid = $attuid and " +
-   				     "password = $password;", {
+   			db.all("select * from user where attuid = $attuid and password = " +
+               "$password;", {
    				$attuid: attuid,
    				$password: password
 		    }, function(err, rows) {
+          console.log(err, rows);
 		    	if (rows) user = rows[0];
 		    	callback(err);
 		    });

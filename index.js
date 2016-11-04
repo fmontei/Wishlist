@@ -52,3 +52,12 @@ app.get('/', function(req, res) {
 app.listen(process.env.PORT || 3000, function() {
     console.log("Listening on port " + (process.env.PORT || 3000));
 });
+
+String.prototype.format = function() {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
