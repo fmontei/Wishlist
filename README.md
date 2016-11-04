@@ -39,6 +39,7 @@ mount them in `index.js`.
 ### Endpoints
 
 /get_wish 
+
 /create_wish data:name&imageUrl&url&cost&category&reason&description&requester
 
 /vote data:wish_id=<wish_id>&user_id=<user_id>&vote=<0 or 1>
