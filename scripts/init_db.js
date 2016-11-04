@@ -6,7 +6,7 @@ var router = express.Router();
 var db = new sqlite3.Database('wishlist.db');
 var supervisor_id = null;
 
-var create_user_table_stmt = "create table user(" +
+var create_user_table_stmt = "create table if not exists user(" +
     "user_id integer primary key autoincrement not null," +
     "firstname varchar(30)," +
     "lastname varchar(30)," +
@@ -40,6 +40,22 @@ var create_vote_table_statement = "create table if not exists vote(" +
 
 var create_user_prototype_table_stmt = "create table if not exists " +
     "user_prototype(attuid varchar(30) not null unique on conflict ignore);";
+
+var drop_tables = function() {
+    var deferred = Q.defer();
+
+    async.parallel([
+        function(callback) {
+            db.run("drop table if exists user;", function(err) {
+                callback(err);
+            });
+        }
+    ], function(err) {
+        deferred.resolve(err);
+    });
+
+    return deferred.promise;
+};
 
 var create_tables = function() {
     var deferred = Q.defer();
@@ -271,8 +287,10 @@ router.use(function(req, res, next) {
     function throw_500(err) {
         res.status(500).send("Error initializing DB: " + err + ".");
     }
-
-    create_tables().then(function(err) {
+    drop_tables().then(function(err) {
+        if (err) throw_500(err);
+        else return create_tables();
+    }).then(function(err) {
         if (err) throw_500(err);
         else return insert_into_tables();
     }).then(function(err) {
