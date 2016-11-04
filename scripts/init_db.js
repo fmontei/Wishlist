@@ -190,6 +190,83 @@ function get_wish_statements() {
 	return insert_wish_statements;
 }
 
+function create_wishes() {
+    var insert_wish_statements = [];
+    var wishes =  [{
+			requester: 'js802v',
+			name : 'Game Sphere',
+			url : 'gamesphere.com',
+			reason : 'no reason at all',
+			status : 'pending', // admin can change to {'approved','rejected','crowd'}
+			description : 'It\'\'s spherical!',
+			imageUrl : 'https://media.tenor.co/images/04631b0f77251af5e7dafe0b3a061724/raw',
+			comments : null, // to be filled out by admin upon status change,
+			cost : 514.99,
+			raised : 10.99,
+			donated: false
+		}, {
+			requester : 'js802v',
+			name : 'Rugrats Season 1 DVD',
+			url : 'https://www.amazon.com/Rugrats-Season-Disc-Melanie-Chartoff/dp/B00264H48O',
+			reason : 'Nostalgia feels',
+			status : 'pending',
+			description : 'What\'\'s better than a clean diapee and a fresh bottle? How about the first-ever, 25-episode, 4-disc set of the complete First Season of Rugrats! It\'\'s Tommy, Angelica, Chuckie and the rest of the gang, taking you on adventures from the ground up.',
+			imageUrl : 'https://images-na.ssl-images-amazon.com/images/I/51GaL5wlh8L.jpg',
+			comments : null,
+			cost : 13.29,
+            raised: 0
+		}, {
+			requester : 'js802v',
+			name : 'Red Swingline Stapler',
+			url : 'http://www.thinkgeek.com/product/61b7/',
+			reason : 'Excuse me, I believe you have my stapler...',
+			status : 'rejected', // admin can change to {'approved','rejected','crowd'}
+			description : 'People sometimes form very strong bonds to inanimate objects. This is especially the case when you come into daily contact with, say, a red Swingline stapler.',
+			imageUrl : 'http://www.thinkgeek.com/images/products/frontsquare/61b7_swingline_stapler.jpg',
+            comments: null,
+			cost : 24.99,
+            raised: 0
+		}, {
+			requester : 'yh128t',
+			name : 'Pumpkins',
+			url : 'pumpkins.com',
+			reason : 'I\'\'m hungry',
+			status : 'approved', // admin can change to {'approved','rejected','crowd'}
+			description : 'Pumpkins are so yummy!',
+			imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
+			comments : null, // to be filled out by admin upon status change
+            raised: 0,
+			cost : 14.99
+		}, {
+			requester : 'yh128t',
+			name : 'Pumpkins',
+			url : 'pumpkins.com',
+			reason : 'I\'\'m hungry',
+			status : 'crowd', // admin can change to {'approved','rejected','crowd'}
+			description : 'Pumpkins are so yummy!',
+			imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
+			comments : null, // to be filled out by admin upon status change
+			cost : 14.99,
+			raised : 10.99,
+		}];
+	for (i in wishes){
+        wish = wishes[i];
+        statement = "insert into wish(" +
+            "requester, name, url, reason, status, description, imageUrl, cost, crowd_source) " +
+            "values('" + wish.requester + "'," +
+            "'" + wish.name + "'," +
+            "'" + wish.url + "'," +
+            "'" + wish.reason + "'," +
+            "'" + wish.status + "'," +
+            "'" + wish.description + "'," +
+            "'" + wish.imageUrl + "'," +
+            wish.cost + "," +
+            wish.raised + ");";
+        insert_wish_statements.push(statement);
+	}
+	return insert_wish_statements;
+}
+
 router.use(function(req, res, next) {
     function throw_500(err) {
         res.status(500).send("Error initializing DB: " + err + ".");
