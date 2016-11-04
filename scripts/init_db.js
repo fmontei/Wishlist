@@ -32,11 +32,11 @@ var create_wish_table_statement = "create table if not exists wish(" +
 	"foreign key (requester) references user(name) on update cascade);";
 
 var create_vote_table_statement = "create table if not exists vote(" +
-        "vote_id integer primary key autoincrement not null," +
-        "user_id integer," +
-        "wish_id integer," +
-        "voted integer," +
-        "foreign key (wish_id) references user(user_id) on update cascade);";
+    "vote_id integer primary key autoincrement not null," +
+    "user_id integer," +
+    "wish_id integer," +
+    "voted integer," +
+    "foreign key (wish_id) references user(user_id) on update cascade);";
 
 var create_user_prototype_table_stmt = "create table if not exists " +
 	"user_prototype(attuid varchar(30) not null unique on conflict ignore);";

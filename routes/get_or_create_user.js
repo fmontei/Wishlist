@@ -13,7 +13,7 @@ router.use(function(req, res, next) {
     	
    	async.waterfall([
    		function create_user_if_not_exists(callback) {
-   			db.run("insert into user(attuid, password) values(" +
+   			db.run("insert or ignore into user(attuid, password) values(" +
                "$attuid, $password);", {
                 $attuid: attuid,
                 $password: password
