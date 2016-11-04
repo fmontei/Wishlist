@@ -36,6 +36,18 @@ mount them in `index.js`.
 
 ## Misc
 
+### Endpoints
+
+/get_wish 
+/create_wish data:name&imageUrl&url&cost&category&reason&description&requester
+
+/vote data:wish_id=<wish_id>&user_id=<user_id>&vote=<0 or 1>
+/get_votes?wish_id=<wish_id>&user_id=<user_id>
+
+/status_update data:wish_id=<wish_id>&new_status=<new_status>&comments=<comments>
+
+/crowd_fund data:wish_id=<wish_id>&contribution=<$$$$$$$$>
+
 ### Adding packages
 
 * Pass the `-S` flag to `npm install ...` to save the package as an application
