@@ -8,6 +8,7 @@ var request = require('request');
 
 var init_db = require('./scripts/init_db');
 var get_or_create_user = require('./routes/get_or_create_user');
+var get_default_users = require('./routes/get_default_users');
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 
 app.get('/init', init_db);
 app.post('/get_or_create_user', get_or_create_user);
+app.get('/get_default_users', get_default_users);
 
 request({
     url: 'http://localhost:' + (process.env.PORT || 3000) + '/init',
