@@ -142,7 +142,8 @@ function get_wish_statements() {
 			comments : null, // to be filled out by admin upon status change,
 			cost : 514.99,
 			raised : 10.99,
-			donated: false
+			donated: false,
+			score: 1
 		}, {
 			requester : 'js802v',
 			name : 'Rugrats Season 1 DVD',
@@ -153,7 +154,8 @@ function get_wish_statements() {
 			imageUrl : 'https://images-na.ssl-images-amazon.com/images/I/51GaL5wlh8L.jpg',
 			comments : null,
 			cost : 13.29,
-            raised: 0
+            raised: 0,
+			score: 1
 		}, {
 			requester : 'js802v',
 			name : 'Red Swingline Stapler',
@@ -162,9 +164,10 @@ function get_wish_statements() {
 			status : 'rejected', // admin can change to {'approved','rejected','crowd'}
 			description : 'People sometimes form very strong bonds to inanimate objects. This is especially the case when you come into daily contact with, say, a red Swingline stapler.',
 			imageUrl : 'http://www.thinkgeek.com/images/products/frontsquare/61b7_swingline_stapler.jpg',
-            comments: null,
+            comments: 'no money!',
 			cost : 24.99,
-            raised: 0
+            raised: 0,
+			score: 10
 		}, {
 			requester : 'yh128t',
 			name : 'Pumpkins',
@@ -173,9 +176,10 @@ function get_wish_statements() {
 			status : 'approved', // admin can change to {'approved','rejected','crowd'}
 			description : 'Pumpkins are so yummy!',
 			imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
-			comments : null, // to be filled out by admin upon status change
+			comments : 'great idea!', // to be filled out by admin upon status change
             raised: 0,
-			cost : 14.99
+			cost : 14.99,
+			score: 99
 		}, {
 			requester : 'yh128t',
 			name : 'Pumpkins',
@@ -184,14 +188,15 @@ function get_wish_statements() {
 			status : 'crowd', // admin can change to {'approved','rejected','crowd'}
 			description : 'Pumpkins are so yummy!',
 			imageUrl : 'http://healthyrise.com/wp-content/uploads/2016/09/Pumpkin-5.gif',
-			comments : null, // to be filled out by admin upon status change
+			comments : 'maybe others are hungry too!', // to be filled out by admin upon status change
 			cost : 14.99,
 			raised : 10.99,
+			score: 27
 		}];
 	for (i in wishes){
         wish = wishes[i];
         statement = "insert into wish(" +
-            "requester, name, url, reason, status, description, imageUrl, cost, crowd_source) " +
+            "requester, name, url, reason, status, description, imageUrl, cost, crowd_source, score, comments) " +
             "values('" + wish.requester + "'," +
             "'" + wish.name + "'," +
             "'" + wish.url + "'," +
@@ -200,7 +205,9 @@ function get_wish_statements() {
             "'" + wish.description + "'," +
             "'" + wish.imageUrl + "'," +
             wish.cost + "," +
-            wish.raised + ");";
+            wish.raised + "," +
+			wish.score + "," +
+			"'" + wish.comments + "');";
         insert_wish_statements.push(statement);
 	}
 	return insert_wish_statements;
