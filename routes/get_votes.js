@@ -17,8 +17,10 @@ router.use(function(req, res, next) {
 		query += "wish_id = $wish_id and user_id = $user_id;"
 	} else if(user_id) {
 		query += "user_id = $user_id;"
-	} else {
+	} else if(wish_id){
 		query += "wish_id = $wish_id;"
+	} else {
+		query = "select * from vote;"
 	}
 	console.log(query)
    	async.waterfall([
