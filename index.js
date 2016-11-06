@@ -13,7 +13,7 @@ var get_wish = require('./routes/get_wish');
 var vote = require('./routes/vote');
 var get_vote = require('./routes/get_votes');
 var get_default_users = require('./routes/get_default_users');
-var update_status = require('./routes/update_wish_status');
+var update_wish_status = require('./routes/update_wish_status');
 var update_crowd_fund = require('./routes/update_crowd_fund');
 
 var allowCrossDomain = function(req, res, next) {
@@ -35,7 +35,7 @@ app.post('/get_or_create_user', get_or_create_user);
 app.post('/create_wish', create_wish);
 app.post('/vote', vote);
 app.get('/get_default_users', get_default_users);
-app.put('/status', update_status);
+app.put('/status_update', update_wish_status);
 app.put('/crowd_fund', update_crowd_fund);
 
 request({

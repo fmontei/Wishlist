@@ -11,6 +11,7 @@ router.use(function(req, res, next) {
 	new_status = req.body.status,
 	new_comments = req.body.comment,
 	wish = null
+	console.log('andy');
         console.log(wish_id + ' ' + new_status + ' ' + new_comments)	
    	async.waterfall([
    		function get_user(callback) {
