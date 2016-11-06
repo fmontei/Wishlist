@@ -35,7 +35,7 @@ app.post('/get_or_create_user', get_or_create_user);
 app.post('/create_wish', create_wish);
 app.post('/vote', vote);
 app.get('/get_default_users', get_default_users);
-app.post('/status', update_status);
+app.put('/status', update_status);
 app.put('/crowd_fund', update_crowd_fund);
 
 request({
