@@ -13,8 +13,9 @@ var get_wish = require('./routes/get_wish');
 var vote = require('./routes/vote');
 var get_vote = require('./routes/get_votes');
 var get_default_users = require('./routes/get_default_users');
-var update_status = require('./routes/update_wish_status');
+var update_wish_status = require('./routes/update_wish_status');
 var update_crowd_fund = require('./routes/update_crowd_fund');
+var update_score = require('./routes/update_score');
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -35,8 +36,9 @@ app.post('/get_or_create_user', get_or_create_user);
 app.post('/create_wish', create_wish);
 app.post('/vote', vote);
 app.get('/get_default_users', get_default_users);
-app.post('/status', update_status);
-app.post('/crowd_fund', update_crowd_fund);
+app.put('/status_update', update_wish_status);
+app.put('/crowd_fund', update_crowd_fund);
+app.put('/update_score', update_score);
 
 request({
     url: 'http://localhost:' + (process.env.PORT || 3000) + '/init',
@@ -52,3 +54,12 @@ app.get('/', function(req, res) {
 app.listen(process.env.PORT || 3000, function() {
     console.log("Listening on port " + (process.env.PORT || 3000));
 });
+
+String.prototype.format = function() {
+    var formatted = this;
+    for (var i = 0; i < arguments.length; i++) {
+        var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};

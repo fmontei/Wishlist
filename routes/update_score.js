@@ -8,16 +8,13 @@ var db = new sqlite3.Database('wishlist.db');
 
 router.use(function(req, res, next) {
     var wish_id = req.body.wish_id,
-	new_status = req.body.status,
-	new_comments = req.body.comment,
+	score = req.body.score
 	wish = null
-	console.log('andy');
-        console.log(wish_id + ' ' + new_status + ' ' + new_comments)	
+		
    	async.waterfall([
    		function get_user(callback) {
-   			db.all('update wish set status = $new_status, comments = $new_comments where wish_id = $wish_id;', {
-   				$new_comments: new_comments,
-				$new_status: new_status,
+   			db.all('update wish set score = $score where wish_id = $wish_id;', {
+   				$score: score,
 				$wish_id: wish_id
 		    }, function(err, rows) {
                         console.log(err)
